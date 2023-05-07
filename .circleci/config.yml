@@ -1,0 +1,59 @@
+version: 2.1
+
+executors:
+  terraform_executor:
+    docker:
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:1.3.8
+    working_directory: ~/iroha-terraform
+  tflint_executor:
+    docker:
+      - image: ghcr.io/terraform-linters/tflint
+    working_directory: ~/iroha-terraform
+  tfsec_executor:
+    docker:
+      - image: aquasec/tfsec:latest
+    working_directory: ~/iroha-terraform
+
+jobs:
+  terraform_fmt:
+    executor:
+      terraform_executor
+    steps:
+      - checkout
+      - run:
+          name: terraform fmt
+          command: |
+            terraform fmt -recursive -diff=true -check=true
+  tflint:
+    executor:
+      tflint_executor
+    steps:
+      - checkout
+      - run:
+          name: tflint
+          command: |
+            tflint --init;\
+            find . -type f -name "*.tf" -exec dirname {} \;|grep modules/ \
+            | sort -u \
+            | while read line; do
+                tflint $line
+              done
+  tfsec:
+    executor:
+      tfsec_executor
+    steps:
+      - checkout
+      - run:
+          name: tfsec
+          command: |
+            tfsec . --config-file tfsec_config.yml --concise-output
+workflows:
+  workflow:
+    jobs:
+      - terraform_fmt
+      - tflint:
+          requires:
+            - terraform_fmt
+      - tfsec:
+          requires:
+            - terraform_fmt
