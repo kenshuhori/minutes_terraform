@@ -42,7 +42,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "template" {
   bucket = aws_s3_bucket.template.id
 
   rule {
-    id = "ExpiredObjectMarkerForETL"
+    id = "ExpiredObjectMarkerForMinutes"
     expiration {
       days                         = 14
       expired_object_delete_marker = false
@@ -50,7 +50,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "template" {
     status = "Enabled"
   }
   rule {
-    id = "ExpiredObjectDeleterForETL"
+    id = "ExpiredObjectDeleterForMinutes"
     expiration {
       days                         = 0
       expired_object_delete_marker = true
