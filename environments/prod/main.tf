@@ -1,7 +1,6 @@
 # IAM
 module "lambda_role" {
   source        = "../../modules/iam/lambda"
-  environment   = "prod"
   iam_role_name = "minutes-serverless-prod-ap-northeast-1-lambdaRole"
 }
 
