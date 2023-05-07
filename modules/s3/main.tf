@@ -27,9 +27,9 @@ resource "aws_s3_bucket_public_access_block" "template" {
   restrict_public_buckets = true
 }
 
-resource "aws_s3_bucket_acl" "template" {
-  bucket = aws_s3_bucket.template.id
-}
+# resource "aws_s3_bucket_acl" "template" {
+#   bucket = aws_s3_bucket.template.id
+# }
 
 resource "aws_s3_bucket_versioning" "template" {
   bucket = aws_s3_bucket.template.id

@@ -9,6 +9,6 @@ module "vpc_endpoint" {
 module "s3" {
   source      = "../../modules/s3"
   environment = "prod"
-  bucket_name = "minutes_prod_audio_files"
+  bucket_name = "minutes-prod-contents"
   allow_vpces = [module.vpc_endpoint.id]
 }
