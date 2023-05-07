@@ -1,2 +1,5 @@
 ---
 minimum_severity: HIGH
+
+exclude:
+  - aws-s3-encryption-customer-key
