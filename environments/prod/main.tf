@@ -1,8 +1,8 @@
 # VPC Endpoint
 module "vpc_endpoint" {
-  source       = "../../modules/vpc_endpoint"
-  environment  = "prod"
-  vpc_id       = "vpc-01e1da440d6749df8"
+  source      = "../../modules/vpc_endpoint"
+  environment = "prod"
+  vpc_id      = "vpc-01e1da440d6749df8"
 }
 
 # S3
