@@ -1,3 +1,9 @@
+# IAM
+module "lambda_role" {
+  source        = "../../modules/iam/lambda"
+  iam_role_name = "minutes-serverless-prod-ap-northeast-1-lambdaRole"
+}
+
 # VPC Endpoint
 module "vpc_endpoint" {
   source      = "../../modules/vpc_endpoint"
