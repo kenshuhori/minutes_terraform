@@ -1,7 +1,7 @@
-# resource "aws_iam_role_policy_attachment" "template" {
-#   role       = aws_iam_role.template.name
-#   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-# }
+resource "aws_iam_role_policy_attachment" "template" {
+  role       = aws_iam_role.template.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+}
 
 resource "aws_iam_role" "template" {
   name               = var.iam_role_name
