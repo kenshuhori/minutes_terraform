@@ -18,3 +18,11 @@ module "s3" {
   bucket_name = "minutes-prod-contents"
   allow_vpces = [module.vpc_endpoint.id]
 }
+
+# ParameterStore
+module "parameter_store_secure_string" {
+  source = "../../modules/parameter_stores/secure_strings"
+  parameters = {
+    "/minutes/prod/YOUTUBE_DATA_API_KEY" = ""
+  }
+}
