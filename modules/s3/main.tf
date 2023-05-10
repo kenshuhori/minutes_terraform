@@ -7,6 +7,17 @@ resource "aws_s3_bucket" "template" {
   }
 }
 
+resource "aws_s3_bucket_notification" "template" {
+  bucket = aws_s3_bucket.template.id
+
+  lambda_function {
+    id                  = "minutes-prod-audio-file-created"
+    events              = ["s3:ObjectCreated:Post"]
+    lambda_function_arn = var.lambda_function_arn
+    filter_suffix       = ".m4a"
+  }
+}
+
 resource "aws_s3_bucket_server_side_encryption_configuration" "template" {
   bucket = aws_s3_bucket.template.id
 
