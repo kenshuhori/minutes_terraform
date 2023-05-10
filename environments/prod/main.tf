@@ -13,10 +13,11 @@ module "vpc_endpoint" {
 
 # S3
 module "s3" {
-  source      = "../../modules/s3"
-  environment = "prod"
-  bucket_name = "minutes-prod-contents"
-  allow_vpces = [module.vpc_endpoint.id]
+  source              = "../../modules/s3"
+  environment         = "prod"
+  bucket_name         = "minutes-prod-contents"
+  allow_vpces         = [module.vpc_endpoint.id]
+  lambda_function_arn = "arn:aws:lambda:ap-northeast-1:345185900516:function:minutes-serverless-prod-transcriber"
 }
 
 # ParameterStore

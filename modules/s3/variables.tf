@@ -7,3 +7,6 @@ variable "bucket_name" {
 variable "allow_vpces" {
   type = list(string)
 }
+variable "lambda_function_arn" {
+  type = string
+}
