@@ -17,6 +17,8 @@ data "aws_iam_policy_document" "lambda_assume_policy" {
 
     actions = [
       "sts:AssumeRole",
+      "kms:Decrypt",
+      "ssm:GetParameter"
     ]
 
     principals {
