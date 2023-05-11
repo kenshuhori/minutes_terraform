@@ -25,5 +25,6 @@ module "parameter_store_secure_string" {
   source = "../../modules/parameter_stores/secure_strings"
   parameters = {
     "/minutes/prod/YOUTUBE_DATA_API_KEY" = ""
+    "/minutes/prod/OPENAI_API_KEY"       = ""
   }
 }
