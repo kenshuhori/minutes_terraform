@@ -12,8 +12,9 @@ resource "aws_s3_bucket_notification" "template" {
 
   lambda_function {
     id                  = "minutes-prod-audio-file-created"
-    events              = ["s3:ObjectCreated:Post"]
+    events              = ["s3:ObjectCreated:*"]
     lambda_function_arn = var.lambda_function_arn
+    filter_prefix       = "audios/"
     filter_suffix       = ".m4a"
   }
 }
